@@ -16,35 +16,60 @@
       --warn:#ffcc66;
       --bad:#ff4d6d;
       --border:rgba(255,255,255,0.08);
+      --glass: rgba(17,26,46,0.78);
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
     }
+
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 20% 10%, rgba(124,92,255,0.35), transparent 55%),
-                  radial-gradient(1000px 700px at 70% 20%, rgba(41,217,255,0.25), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(1200px 800px at 18% 10%, rgba(124,92,255,0.35), transparent 55%),
+        radial-gradient(1000px 700px at 78% 18%, rgba(41,217,255,0.25), transparent 60%),
+        radial-gradient(800px 500px at 50% 100%, rgba(60,255,155,0.08), transparent 60%),
+        var(--bg);
       color: var(--text);
-      line-height:1.45;
+      line-height:1.5;
     }
+
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:1100px; margin:0 auto; padding:32px 18px 70px}
+    .wrap{max-width:1120px; margin:0 auto; padding:32px 18px 80px}
+
+    /* Top Nav */
     .nav{
       display:flex; justify-content:space-between; align-items:center;
       padding:14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: linear-gradient(to bottom, rgba(11,18,32,0.85), rgba(11,18,32,0));
+      backdrop-filter: blur(10px);
     }
     .logo{
-      display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:0.2px;
+      display:flex; gap:10px; align-items:center; font-weight:900; letter-spacing:0.2px;
     }
     .mark{
       width:38px; height:38px; border-radius:12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       box-shadow: 0 12px 28px rgba(124,92,255,0.28);
     }
-    .navlinks{display:flex; gap:18px; color:var(--muted); font-weight:600}
-    .navlinks a:hover{color:var(--text)}
+    .navlinks{display:flex; gap:16px; color:var(--muted); font-weight:700; font-size:14px}
+    .navlinks a{
+      padding:10px 10px;
+      border-radius:12px;
+      border: 1px solid transparent;
+    }
+    .navlinks a:hover{
+      color:var(--text);
+      border-color: var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* Hero */
     .hero{
-      margin-top:26px;
+      margin-top:18px;
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap:22px;
@@ -52,15 +77,18 @@
     }
     @media (max-width: 900px){
       .hero{grid-template-columns:1fr}
+      .navlinks{display:none}
     }
+
     .hcard{
       border:1px solid var(--border);
-      background: rgba(17,26,46,0.78);
-      backdrop-filter: blur(10px);
+      background: var(--glass);
+      backdrop-filter: blur(12px);
       border-radius:22px;
       padding:22px;
-      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+      box-shadow: var(--shadow);
     }
+
     .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px}
     .pill{
       padding:8px 12px;
@@ -68,26 +96,29 @@
       background: rgba(255,255,255,0.06);
       border:1px solid var(--border);
       color: var(--muted);
-      font-weight:700;
+      font-weight:800;
       font-size:13px;
     }
+
     .title{
-      font-size:42px;
+      font-size:44px;
       line-height:1.05;
       margin:0 0 12px 0;
-      letter-spacing:-0.5px;
+      letter-spacing:-0.8px;
     }
+
     .subtitle{
       margin:0 0 16px 0;
       color: var(--muted);
       font-size:16.5px;
-      max-width:60ch;
+      max-width:64ch;
     }
+
     .ctas{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
     .btn{
       padding:12px 16px;
       border-radius:14px;
-      font-weight:800;
+      font-weight:900;
       border:1px solid var(--border);
       background: rgba(255,255,255,0.06);
       transition: transform 0.12s ease;
@@ -100,13 +131,16 @@
       border:none;
       box-shadow: 0 18px 50px rgba(124,92,255,0.25);
     }
+
     .note{
       font-size:13px;
       color: var(--muted);
       margin-top:10px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
     }
-    .sidebox h3{margin:0 0 8px 0}
-    .sidebox p{margin:0; color:var(--muted)}
+
     .grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -116,26 +150,66 @@
     @media (max-width: 900px){
       .grid{grid-template-columns:1fr}
     }
+
     .card{
       border:1px solid var(--border);
       background: rgba(17,26,46,0.70);
       border-radius:18px;
       padding:16px;
     }
-    .card h4{margin:0 0 6px 0}
+    .card h4{margin:0 0 6px 0; letter-spacing:-0.2px}
     .card p{margin:0; color:var(--muted); font-size:14px}
+
+    .sidebox h3{margin:0 0 8px 0; letter-spacing:-0.2px}
+    .sidebox p{margin:0; color:var(--muted)}
+
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.06);
+      border:1px solid var(--border);
+      font-weight:900;
+      color:var(--muted);
+      font-size:13px;
+      width: fit-content;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--accent2);
+      box-shadow: 0 0 18px rgba(41,217,255,0.7);
+    }
+
+    .mock{
+      border:1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.18);
+      border-radius:18px;
+      padding:14px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* Sections */
     .section{
       margin-top:28px;
       border:1px solid var(--border);
       background: rgba(17,26,46,0.68);
       border-radius:22px;
       padding:22px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.22);
     }
+
     .section h2{
       margin:0 0 10px 0;
       font-size:22px;
       letter-spacing:-0.2px;
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
+
+    .subtext{margin:0; color:var(--muted)}
+
     .two{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -145,6 +219,9 @@
     @media (max-width: 900px){
       .two{grid-template-columns:1fr}
     }
+
+    ul{margin:10px 0 0 18px; color:var(--muted)}
+
     .steps{
       display:grid;
       grid-template-columns: 1fr;
@@ -158,6 +235,36 @@
       background: rgba(255,255,255,0.04);
     }
     .step strong{display:block; margin-bottom:4px}
+
+    /* Demo gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 900px){
+      .gallery{grid-template-columns:1fr}
+    }
+    .shot{
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:18px;
+      overflow:hidden;
+      background: rgba(0,0,0,0.18);
+    }
+    .shot img{
+      width:100%;
+      display:block;
+    }
+    .cap{
+      padding:12px 12px;
+      color: var(--muted);
+      font-size:13px;
+      font-weight:800;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Metrics */
     .metrics{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -176,8 +283,9 @@
       border-radius:18px;
       padding:14px;
     }
-    .metric .k{color:var(--muted); font-weight:700; font-size:13px}
-    .metric .v{font-size:22px; font-weight:900; margin-top:6px}
+    .metric .k{color:var(--muted); font-weight:800; font-size:13px}
+    .metric .v{font-size:22px; font-weight:950; margin-top:6px}
+
     .bar{
       height:8px;
       border-radius:999px;
@@ -187,53 +295,49 @@
     }
     .fill{
       height:100%;
-      width:0%;
       border-radius:999px;
       background: linear-gradient(90deg, var(--good), var(--accent2));
     }
-    .mock{
-      border:1px dashed rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.18);
-      border-radius:18px;
-      padding:14px;
-      color:var(--muted);
-      font-size:14px;
-    }
+
     .footer{
-      margin-top:24px;
+      margin-top:26px;
       color:var(--muted);
       font-size:13px;
       text-align:center;
     }
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,0.06);
+
+    .kpiRow{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .kpi{
+      padding:10px 12px;
+      border-radius:16px;
       border:1px solid var(--border);
-      font-weight:800;
-      color:var(--muted);
+      background: rgba(255,255,255,0.04);
+      font-weight:900;
+      color: var(--text);
       font-size:13px;
     }
-    .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: var(--accent2);
-      box-shadow: 0 0 18px rgba(41,217,255,0.7);
-    }
-    ul{margin:10px 0 0 18px; color:var(--muted)}
+    .kpi span{color:var(--muted); font-weight:800}
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="nav">
       <div class="logo">
         <div class="mark"></div>
-        <div>Health Assistant ML <span style="color:var(--muted); font-weight:700;">for Older Adults</span></div>
+        <div>Health Assistant ML <span style="color:var(--muted); font-weight:800;">for Older Adults</span></div>
       </div>
       <div class="navlinks">
         <a href="#problem">Problem</a>
         <a href="#solution">Solution</a>
-        <a href="#how">How it works</a>
+        <a href="#how">How</a>
+        <a href="#demo">Demo</a>
+        <a href="#clinical">Clinical</a>
         <a href="#metrics">Model</a>
       </div>
     </div>
@@ -244,38 +348,48 @@
           <div class="pill">Preventative Medicine</div>
           <div class="pill">Social Determinants of Health</div>
           <div class="pill">Immigrant Seniors</div>
-          <div class="pill">ML Risk Insights</div>
+          <div class="pill">Explainable ML</div>
         </div>
 
-        <h1 class="title">A health assistant that turns real-life barriers into actionable prevention.</h1>
+        <h1 class="title">Turn real-life barriers into actionable prevention.</h1>
         <p class="subtitle">
           Older adults who immigrate later in life often face language, identity, and system-navigation barriers.
-          This app collects basic health facts and social determinants of health, then uses ML to suggest personalized lifestyle changes
-          that reduce risk and improve long-term outcomes.
+          This assistant combines <b>basic health inputs</b> with <b>social determinants of health</b> to suggest
+          realistic lifestyle changes that reduce preventable risk — earlier.
         </p>
 
+        <div class="kpiRow">
+          <div class="kpi">⏱️ <span>Under</span> 60 seconds intake</div>
+          <div class="kpi">🧠 <span>Explainable</span> reasons shown</div>
+          <div class="kpi">🩺 <span>Doctor-ready</span> summary export</div>
+          <div class="kpi">🌍 <span>Barrier-aware</span> recommendations</div>
+        </div>
+
         <div class="ctas">
-          <a class="btn primary" href="#how">🚀 View the Prototype</a>
-          <a class="btn" href="#metrics">📈 See Model Metrics</a>
-          <a class="btn" href="#demo">📱 Swift Demo UI</a>
+          <a class="btn primary" href="#demo">🚀 View Demo UI</a>
+          <a class="btn" href="#how">🧭 How it Works</a>
+          <a class="btn" href="#metrics">📈 Model Metrics</a>
         </div>
 
         <div class="note">
-          ⚠️ Demo prototype for a hackathon / application. Not medical advice. Designed to support health literacy + prevention planning.
+          <div style="margin-top:2px;">⚠️</div>
+          <div>
+            Prototype for a hackathon / application. Not medical advice. Designed to support prevention planning and health literacy.
+          </div>
         </div>
 
         <div class="grid">
           <div class="card">
             <h4>Personalized</h4>
-            <p>Outputs tailored lifestyle suggestions based on health + demographic inputs.</p>
+            <p>Tailored lifestyle suggestions based on medical + demographic inputs.</p>
           </div>
           <div class="card">
-            <h4>Barrier-aware</h4>
-            <p>Accounts for language access, income, food security, housing, and isolation.</p>
+            <h4>SDOH-aware</h4>
+            <p>Considers language access, cost constraints, food access, and isolation.</p>
           </div>
           <div class="card">
             <h4>Explainable</h4>
-            <p>Shows “why” a recommendation was suggested using simple, readable insights.</p>
+            <p>Shows the “why” behind each recommendation to build trust and adoption.</p>
           </div>
         </div>
       </div>
@@ -283,9 +397,10 @@
       <div class="hcard sidebox">
         <h3 style="margin-top:0">Samarth’s Pitch</h3>
         <p>
-          “We can’t improve health outcomes if our tools assume everyone has the same access, culture,
-          and ability to navigate healthcare. This assistant meets seniors where they are.”
+          “We can’t improve outcomes if our tools assume everyone has the same access, culture, and ability to navigate care.
+          This assistant meets older adults where they are — then helps them take the next step.”
         </p>
+
         <div style="height:12px"></div>
         <div class="tag"><span class="dot"></span> Built for older adults + immigrant communities</div>
 
@@ -293,31 +408,32 @@
         <div class="mock">
           <strong>Example output:</strong><br/>
           “Based on diabetes risk + low physical activity + limited food access, try:
-          10-minute walks after meals, swap sugary drinks with flavored water, and use weekly meal planning with a culturally familiar diet.”
+          10-minute walks after meals, swap sugary drinks with flavored water, and use weekly meal planning with culturally familiar foods.”
         </div>
 
         <div style="height:12px"></div>
         <div class="mock">
-          <strong>What it predicts:</strong><br/>
-          Preventative risk signals (e.g., cardiometabolic risk, falls risk, medication adherence barriers).
+          <strong>Built to support doctor conversations:</strong><br/>
+          Designed for Canadian clinical workflows (e.g., University of Toronto–affiliated settings, St. Joseph’s Health Care London,
+          and London Health Sciences Centre), with a clear “bring to appointment” summary.
         </div>
       </div>
     </div>
 
     <div id="problem" class="section">
-      <h2>The Problem</h2>
+      <h2>🧩 The Problem</h2>
       <div class="two">
         <div class="card">
           <h4>Late-life immigrants are underserved</h4>
           <p>
-            Many seniors immigrate later, and face language barriers, fewer social connections, and difficulty navigating primary care.
-            Prevention becomes reactive—people seek care only when symptoms worsen.
+            Many seniors immigrate later and face language barriers, fewer social supports, and difficulty navigating primary care.
+            Prevention becomes reactive — people seek help only when symptoms worsen.
           </p>
         </div>
         <div class="card">
-          <h4>Social determinants drive health outcomes</h4>
+          <h4>Social determinants drive outcomes</h4>
           <p>
-            Income, housing, food access, transportation, isolation, and health literacy often matter as much as medical history—
+            Income, housing, food access, transportation, isolation, and health literacy often matter as much as medical history —
             but most tools ignore them.
           </p>
         </div>
@@ -325,75 +441,111 @@
     </div>
 
     <div id="solution" class="section">
-      <h2>The Solution</h2>
+      <h2>✅ The Solution</h2>
+      <p class="subtext">
+        A simple intake → ML-style risk signal → explainable reasons → barrier-aware recommendations + doctor summary export.
+      </p>
       <div class="two">
         <div class="card">
           <h4>Inputs</h4>
           <ul>
-            <li>Age, sex, height/weight, activity level, sleep</li>
-            <li>Chronic conditions (e.g., diabetes, hypertension)</li>
-            <li>Medication count + adherence difficulty</li>
-            <li>Social determinants: language access, income stability, food access, housing safety, social isolation</li>
+            <li>Age, sleep, height/weight, activity</li>
+            <li>Key conditions (e.g., diabetes, hypertension)</li>
+            <li>SDOH: language access, cost barriers, food access, isolation</li>
           </ul>
         </div>
         <div class="card">
           <h4>Outputs</h4>
           <ul>
-            <li>Personalized lifestyle changes (movement, nutrition, sleep, stress)</li>
-            <li>Barrier-aware suggestions (low-cost + culturally practical)</li>
-            <li>Simple explanations and next-step checklists</li>
-            <li>“Bring this summary to your doctor” printable view</li>
+            <li>Personalized prevention plan (movement, nutrition, sleep)</li>
+            <li>Barrier-aware actions (low-cost + realistic)</li>
+            <li>Plain-language explainability (“why this was suggested”)</li>
+            <li>Shareable “Doctor Summary” for visits</li>
           </ul>
         </div>
       </div>
     </div>
 
     <div id="how" class="section">
-      <h2>How it Works</h2>
+      <h2>🧭 How it Works</h2>
       <div class="steps">
         <div class="step">
-          <strong>1) User fills a short intake form</strong>
-          Basic health + demographic info plus social factors (language access, food security, transportation, loneliness).
+          <strong>1) Intake</strong>
+          The user inputs basic health facts + social determinants of health in under a minute.
         </div>
         <div class="step">
-          <strong>2) ML model estimates preventative risk flags</strong>
-          The model predicts risk categories (example: cardiometabolic risk, falls risk, adherence barrier).
+          <strong>2) Risk Signal (Prototype)</strong>
+          The system estimates preventable risk categories (e.g., cardiometabolic risk, adherence barriers).
         </div>
         <div class="step">
-          <strong>3) Recommendation engine generates “doable” actions</strong>
-          Actions are practical for older adults and adjusted for constraints (budget, mobility, language).
+          <strong>3) Recommendation Engine</strong>
+          Generates “doable” actions that account for constraints like budget, mobility, language, and isolation.
         </div>
         <div class="step">
-          <strong>4) Explainability layer builds trust</strong>
-          The app shows the top 3 reasons behind a recommendation in plain language.
+          <strong>4) Explainability + Trust</strong>
+          Shows top reasons behind recommendations to improve adoption and reduce confusion.
         </div>
       </div>
     </div>
 
     <div id="demo" class="section">
-      <h2>Sample App (SwiftUI Prototype)</h2>
-      <div class="two">
-        <div class="mock">
-          <strong>What to show:</strong><br/>
-          • Home screen: “Profile → Risk → Suggestions”<br/>
-          • Recommendations: 3–5 cards with checkboxes<br/>
-          • A “Share with Doctor” summary button<br/><br/>
-          ✅ You can screenshot the simulator and paste images here later.
+      <h2>📱 Demo UI (Expo Prototype)</h2>
+      <p class="subtext">
+        Intake → risk snapshot → recommendations → metrics + doctor summary sharing.
+      </p>
+
+      <div class="gallery">
+        <div class="shot">
+          <img src="demo-intake.png" alt="Demo Intake Screen"/>
+          <div class="cap">1) Intake: basic health + social determinants of health</div>
         </div>
-        <div class="mock">
-          <strong>Demo Screenshots (optional):</strong><br/>
-          Replace this text with images once you have them.<br/><br/>
-          Tip: drag/drop images into the same folder and reference like:<br/>
-          <code style="color:var(--text)">&#60;img src="demo1.png" /&#62;</code>
+        <div class="shot">
+          <img src="demo-results.png" alt="Demo Results Screen"/>
+          <div class="cap">2) Results: risk signal + explainability reasons</div>
+        </div>
+        <div class="shot">
+          <img src="demo-recommendations.png" alt="Demo Recommendations Screen"/>
+          <div class="cap">3) Recommendations: practical, barrier-aware prevention actions</div>
+        </div>
+        <div class="shot">
+          <img src="demo-metrics.png" alt="Demo Metrics Screen"/>
+          <div class="cap">4) Metrics + Share: F1/Sens/Spec/AUROC + doctor summary</div>
         </div>
       </div>
     </div>
 
+    <div id="clinical" class="section">
+      <h2>🩺 Clinical Use + Validation Plan</h2>
+      <div class="two">
+        <div class="card">
+          <h4>Where it fits in the workflow</h4>
+          <ul>
+            <li>Before appointments (patient completes intake at home)</li>
+            <li>During visits (doctor summary reduces miscommunication)</li>
+            <li>After care (action checklist for follow-through)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>How it would be validated</h4>
+          <ul>
+            <li>Clinician feedback loop in Ontario hospital settings</li>
+            <li>Subgroup testing for immigrant seniors + language access</li>
+            <li>Safety checks: low-risk recommendations only</li>
+            <li>Monitoring for bias + drift over time</li>
+          </ul>
+        </div>
+      </div>
+      <div style="height:12px"></div>
+      <div class="mock">
+        <strong>Design note:</strong> This tool is intended to support prevention planning and improve communication —
+        not replace clinicians. Outputs are lifestyle-focused and designed to be culturally practical.
+      </div>
+    </div>
+
     <div id="metrics" class="section">
-      <h2>Model Performance (Demo Metrics)</h2>
-      <p style="margin:0; color:var(--muted)">
-        These are prototype-level metrics for a binary risk prediction model. In a real deployment,
-        results would be validated clinically and monitored for bias across subgroups.
+      <h2>📈 Model Performance (Demo Metrics)</h2>
+      <p class="subtext">
+        Prototype metrics for a binary risk prediction model. Real deployment requires clinical validation and continuous monitoring.
       </p>
 
       <div class="metrics">
@@ -424,26 +576,28 @@
         <div class="card">
           <h4>What these mean</h4>
           <ul>
-            <li><b>F1</b> balances precision + recall (overall quality)</li>
-            <li><b>Sensitivity</b> = correctly catching high-risk users</li>
+            <li><b>F1</b> balances precision + recall</li>
+            <li><b>Sensitivity</b> = catching high-risk users</li>
             <li><b>Specificity</b> = correctly identifying low-risk users</li>
-            <li><b>AUROC</b> = how well the model separates risk vs non-risk</li>
+            <li><b>AUROC</b> = separation quality between groups</li>
           </ul>
         </div>
         <div class="card">
-          <h4>Fairness & Safety Notes</h4>
+          <h4>Safety + Privacy</h4>
           <ul>
-            <li>Not a diagnosis; supports preventative planning</li>
-            <li>Recommendations are low-risk, lifestyle-focused</li>
-            <li>Would require subgroup testing for immigrant seniors</li>
+            <li>Not a diagnosis; prevention support only</li>
+            <li>Minimal data collection philosophy</li>
+            <li>Can run on-device in future builds</li>
+            <li>Designed for transparency + explainability</li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="footer">
-      Built by Samarth • Health Assistant with Machine Learning for Older Adults • Prototype Landing Page
+      Built by Samarth • Health Assistant with Machine Learning for Older Adults • Landing + Demo UI Prototype
     </div>
   </div>
 </body>
 </html>
+
